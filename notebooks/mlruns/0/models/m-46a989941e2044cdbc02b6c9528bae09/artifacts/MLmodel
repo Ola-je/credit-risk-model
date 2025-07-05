@@ -1,0 +1,22 @@
+artifact_path: file:c:/Tenx-projects/credit-risk-model/notebooks/mlruns/0/models/m-46a989941e2044cdbc02b6c9528bae09/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.13.1
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.6.1
+mlflow_version: 3.1.1
+model_id: m-46a989941e2044cdbc02b6c9528bae09
+model_size_bytes: 4222
+model_uuid: m-46a989941e2044cdbc02b6c9528bae09
+prompts: null
+run_id: 8d3071d9752e4f51a2b67065b9ef70a7
+utc_time_created: '2025-07-04 03:21:05.973170'
