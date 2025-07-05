@@ -1,0 +1,50 @@
+from pydantic import BaseModel
+from typing import List, Optional
+
+class TransactionFeatures(BaseModel):
+    Amount: float
+    Value: float
+    TransactionHour: int
+    TransactionDay: int
+    TransactionMonth: int
+    TransactionYear: int
+    TransactionDayOfWeek: int
+    TransactionIsWeekend: int
+    TotalTransactionAmount: float
+    AverageTransactionAmount: float
+    TransactionCount: int
+    StdTransactionAmount: float
+    MaxTransactionAmount: float
+    MinTransactionAmount: float
+    Recency: float
+    Frequency: float
+    Monetary: float
+    TotalTransactionAmount_AccountId: float
+    AverageTransactionAmount_AccountId: float
+    TransactionCount_AccountId: int
+    StdTransactionAmount_AccountId: float
+    MaxTransactionAmount_AccountId: float
+    MinTransactionAmount_AccountId: float
+    TotalTransactionAmount_SubscriptionId: float
+    AverageTransactionAmount_SubscriptionId: float
+    TransactionCount_SubscriptionId: int
+    StdTransactionAmount_SubscriptionId: float
+    MaxTransactionAmount_SubscriptionId: float
+    MinTransactionAmount_SubscriptionId: float
+    TotalTransactionAmount_CustomerId: float
+    AverageTransactionAmount_CustomerId: float
+    TransactionCount_CustomerId: int
+    StdTransactionAmount_CustomerId: float
+    MaxTransactionAmount_CustomerId: float
+    MinTransactionAmount_CustomerId: float
+    CurrencyCode: str
+    CountryCode: str
+    ProviderId: str
+    ProductId: str
+    ProductCategory: str
+    ChannelId: str
+    PricingStrategy: int
+    RFM_Cluster: str
+
+class PredictionResponse(BaseModel):
+    risk_probability: float
