@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  credit-risk-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount the local mlruns directory into the container
+      # This allows the API to access the trained model artifacts and database
+      - ./mlruns:/app/mlruns
+    environment:
+      # Ensure the API knows where to find the MLflow tracking URI
+      MLFLOW_TRACKING_URI: sqlite:///mlruns/mlruns.db
