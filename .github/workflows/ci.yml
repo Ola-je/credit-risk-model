@@ -37,8 +37,22 @@ jobs:
     - name: Download Xente Challenge Dataset
       run: | 
         mkdir -p data/raw
-        kaggle datasets download -d atwine/xente-challenge -p data/raw --unzip
+        pushd data/raw
+        kaggle datasets download atwine/xente-challenge --unzip
+        
+        if [ -f "training.csv" ]; then
+          mv training.csv data.csv
+          echo "Renamed training.csv to data.csv"
+        else
+          echo "Warning: training.csv not found, cannot rename to data.csv. Check dataset contents."
+          ls -la
+        fi
 
+        popd
+        
+        echo "Files in data/raw after download and rename attempt:"
+        ls -la data/raw
+        
     - name: Run Flake8 Linter
       run: |
         pip install flake8 
