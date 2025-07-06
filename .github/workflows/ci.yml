@@ -16,16 +16,30 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.10' # Ensure this matches your project's Python version
+        python-version: '3.13' 
 
-    - name: Install dependencies
+    - name: Install Kaggle CLI and dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
+        pip install kaggle -e
+
+    - name: Configure Kaggle API Key
+      env:
+        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME}}
+        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY}}
+      run: |
+        mkdir -p ~/.kaggle
+        echo "{\"username\":\"$KAGGLE_USERNAME\", \"key\":\"KAGGLE_KEY"}" > ~/.kaggle/kaggle.json
+        chmod 600 ~/.kaggle/kaggle.json
+
+    - name: Download Xente Challenge Dataset
+      run: | 
+        mkdir -p data/raw
+        kaggle datasets download -d atwine/xente-challenge -p data/raw --unzip
 
     - name: Run Flake8 Linter
       run: |
-        pip install flake8 # Ensure flake8 is installed if not in requirements.txt (but we added it)
+        pip install flake8 
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=120 --statistics
 
